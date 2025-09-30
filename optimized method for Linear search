@@ -1,0 +1,75 @@
+//optimized method for Linear search 
+//1. using transposition method : 
+//we find element(key) by traversing all the element of the array one by one and moving the found element one place before  
+//so that for searching the same key again we have one less traversal 
+//time complexity O(n)
+
+//2. using move to front/head
+//In this the found element is moved to the front/ zeroth position so that for same search only one comparision is done
+
+#include<bits\stdc++.h>
+using namespace std;
+
+class Array{
+    public:
+    int *arr;          //pointer to dynamic array
+    int size;          //total capacity of array
+    int length;        //total element present in the array
+    //constructor
+    Array(int inputarr[],int n,int s){                                    
+        size = s;
+        length = n;
+        arr = inputarr;             //just pointing no copy 
+    }
+    //for printing the elements of array
+    void display(){                          
+        for(int i=0;i<length;i++){                               //-o(n)
+            cout << arr[i] <<"  ";
+        }
+        cout<<endl;
+    }
+    void swap(int &a,int &b){                      //swap method for moving one element before
+        int temp = a;
+        a = b;
+        b = temp;
+    }
+    // linear search method using transposition
+    // int linearSearch(int key){
+    //     for(int i=0;i<length;i++){                            //-o(n)
+    //         if(arr[i] == key){
+    //             if(i>0) swap(arr[i],arr[i-1]);
+    //             return i;
+    //         }
+    //     }
+    //     return -1;
+    // }
+    
+    //linear search method using move to front/head
+    int linearSearch(int key){
+        for(int i=0;i<length;i++){                            //-o(n)
+            if(arr[i] == key){
+                if(i>0) swap(arr[i],arr[0]);
+                return i;
+            }
+        }
+        return -1;
+    }
+     
+};
+//main function
+int main(){
+    int myarray[] = {1,3,4,56,77,87,54,33};                                        //-o(1)
+    int n = sizeof(myarray)/sizeof(myarray[0]);
+    int key;
+    Array a(myarray,n,10);                                               //-o(3)
+
+    cout<< "original array"<<endl;
+    a.display();                                                         //-o(n)
+    cout<< "enter element to search"<<endl;
+    cin >> key ;
+    cout <<"element fount at " << a.linearSearch(key)<<endl; 
+
+    cout << "Array after search: ";
+    a.display();  
+    return 0;
+}
