@@ -1,4 +1,5 @@
 //Binary search is used in a sorted array
+//Time complexity O(log n)
 
 #include<bits\stdc++.h>
 using namespace std;
