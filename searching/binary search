@@ -21,11 +21,6 @@ class Array{
         }
         cout<<endl;
     }
-    void swap(int &a,int &b){                      //swap method for moving one element before
-        int temp = a;
-        a = b;
-        b = temp;
-    }
     //using for loop
     // int binarysearch(int key,int n){  
     //     int low = 0,high = n;
