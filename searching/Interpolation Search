@@ -1,0 +1,60 @@
+//Interpolation search 
+//sorted and uniformaly distributed array gives O(1) time complexity. 
+//It uses formula pos = low+(((key-arr[low])*(high-low))/(arr[high]-arr[low]))
+//if array is not uniformly distributed then time complexity is O(log(log n))
+
+#include<bits\stdc++.h>
+using namespace std;
+
+class Array{
+    public:
+    int *arr;          //pointer to dynamic array
+    int size;          //total capacity of array
+    int length;        //total element present in the array
+    //constructor
+    Array(int inputarr[],int n,int s){                                    
+        size = s;
+        length = n;
+        arr = inputarr;             //just pointing no copy 
+    }
+    //for printing the elements of array
+    void display(){                          
+        for(int i=0;i<length;i++){                               
+            cout << arr[i] <<"  ";
+        }
+        cout<<endl;
+    }
+    // searching algorithm
+    int interpolationsearch(int arr[],int low,int high,int key){
+        if(low<=high && key >arr[low] && key <= arr[high]){
+            int pos = low + (((double)(high - low)*(key-arr[low]))/(arr[high]-arr[low]));
+            if(arr[pos]==key) return pos;
+            if(arr[pos] < key){
+                return interpolationsearch(arr,pos+1,high,key);
+            }
+            if(arr[pos] > key){
+                return interpolationsearch(arr,low,pos-1,key);
+            }
+        }
+        return -1;
+    }   
+};
+//main function
+int main(){
+    int myarray[] = {1,3,5,23,45,56,76,87,98};                                        
+    int n = sizeof(myarray)/sizeof(myarray[0]);
+    int key;
+    Array a(myarray,n,10);                                               
+
+    cout<< "original array"<<endl;
+    a.display();                                                        
+    cout<< "enter element to search"<<endl;
+    cin >> key ;
+
+    int index = a.interpolationsearch(myarray, 0, n - 1, key);
+    if (index != -1)
+        cout << "Element found at index " << index << endl;
+    else
+        cout << "Element not found!" << endl;
+    return 0;
+}
