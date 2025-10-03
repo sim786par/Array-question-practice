@@ -1,0 +1,66 @@
+//Exponential search (doubling search)
+//sorted array  
+//It double the index until i < n and arr[i] <=key
+// Then binary search is used in the found block 
+//time complexity is O(log n)
+
+#include<bits\stdc++.h>
+using namespace std;
+
+class Array{
+    public:
+    int *arr;          //pointer to dynamic array
+    int size;          //total capacity of array
+    int length;        //total element present in the array
+    //constructor
+    Array(int inputarr[],int n,int s){                                    
+        size = s;
+        length = n;
+        arr = inputarr;             //just pointing no copy 
+    }
+    //for printing the elements of array
+    void display(){                          
+        for(int i=0;i<length;i++){                               
+            cout << arr[i] <<"  ";
+        }
+        cout<<endl;
+    }
+    // searching algorithm
+    int ExponentialSearch(int arr[],int key){                          //O(log n)
+        int i=1;
+        if(arr[0] == key) return 0;
+        while(i < length && arr[i]<= key){
+            i = i*2;
+        }
+        return binarysearch(arr,i/2,min(i,length-1),key);
+    }
+    //Binary Search
+    int binarysearch(int arr[],int low,int high,int key){                        //O(log n)
+        while(low <= high){
+            int mid = low+(high-low)/2;
+            if(arr[mid] == key) return mid;
+            else if(arr[mid] < key) low = mid+1;
+            else high = mid-1;
+        }
+        return -1;
+    }
+};
+//main function
+int main(){
+    int myarray[] = {1,3,5,23,45,56,76,87,98};                                        
+    int n = sizeof(myarray)/sizeof(myarray[0]);
+    int key;
+    Array a(myarray,n,10);                                               
+
+    cout<< "original array"<<endl;
+    a.display();                                                        
+    cout<< "enter element to search"<<endl;
+    cin >> key ;
+
+    int index = a.ExponentialSearch(myarray, key);
+    if (index != -1)
+        cout << "Element found at index " << index << endl;
+    else
+        cout << "Element not found!" << endl;
+    return 0;
+}
