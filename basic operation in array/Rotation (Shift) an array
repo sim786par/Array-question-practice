@@ -1,0 +1,56 @@
+#include<bits\stdc++.h>
+using namespace std;
+
+class Rotation{
+    public:
+    //left shift using for loop
+    // void shift(int a[],int n){
+    //     int x=a[0];
+    //     for(int i=0;i<n;i++){
+    //         a[i] = a[i+1];
+    //     }
+    //     a[n-1]=x;
+    // }
+
+    //left shift using recursion
+    void shift(int a[],int n,int i,int first){
+        if (i==n){
+            a[n-1]=first;
+            return;
+        }
+        a[i-1]=a[i];
+        shift(a,n,i+1,first);    
+    }
+
+    //right shift
+    // void shift(int a[],int i,int last){    
+    //     if (i==0){
+    //         a[i]=last;
+    //         return;
+    //     }
+    //     a[i]=a[i-1];
+    //     shift(a,i-1,last);        
+    // }
+
+    void display(int arr[],int n){
+        for(int i=0;i<n;i++){
+            cout<<arr[i]<<"  ";
+        }
+        cout << endl;
+    }
+};
+
+int main(){
+    int array[] = {8,0,4,6,76,43,23,56,878};
+    int n=sizeof(array)/sizeof(array[0]);
+    Rotation rot;
+
+    cout<<"original array"<<endl;
+    rot.display(array,n);
+    
+    cout<<"rotated array"<<endl;
+    rot.shift(array,n,0,array[0]);                     //left shift
+    //rot.shift(array,n-1,array[n-1]);                 //right shift
+    rot.display(array,n);
+    return 0;
+}
