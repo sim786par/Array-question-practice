@@ -18,13 +18,6 @@ class Array{
         length = n;
         arr = inputarr;             //just pointing no copy 
     }
-    //for printing the elements of array
-    void display(){                          
-        for(int i=0;i<length;i++){                               
-            cout << arr[i] <<"  ";
-        }
-        cout<<endl;
-    }
     // searching algorithm
     int ExponentialSearch(int arr[],int key){                          //O(log n)
         int i=1;
