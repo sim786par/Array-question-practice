@@ -16,13 +16,6 @@ class Array{
         length = n;
         arr = inputarr;             //just pointing no copy 
     }
-    //for printing the elements of array
-    void display(){                          
-        for(int i=0;i<length;i++){                               //-o(n)
-            cout << arr[i] <<"  ";
-        }
-        cout<<endl;
-    }
     // linear search method
     int linearSearch(int key){
         for(int i=0;i<length;i++){                            //-o(n)
@@ -31,8 +24,7 @@ class Array{
             }
         }
         return -1;
-    }
-     
+    }     
 };
 //main function
 int main(){
