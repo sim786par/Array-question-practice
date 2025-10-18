@@ -56,9 +56,9 @@ int main(){
     return 0;
 }
 
-Complexity Analysis:
-Time: O(n)
-for best case O(1): x is greater than each element of the array an need to be inserted at the end
-for worst case O(n) : x less than all element and at the start insertion is required
-Space: O(1) only x is used extra
-This is the optimized method because inserting an element require shifting on the element so for worst case n elements are shifted
+//Complexity Analysis:
+//Time: O(n)
+//for best case O(1): x is greater than each element of the array an need to be inserted at the end
+//for worst case O(n) : x less than all element and at the start insertion is required
+//Space: O(1) only x is used extra
+//This is the optimized method because inserting an element require shifting on the element so for worst case n elements are shifted
