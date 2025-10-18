@@ -48,4 +48,4 @@ int main(){
     cout<< (a2.isSorted() ? "unsorted" : "sorted")<<endl;   
     
 }
-time complexity O(n)   It is the best case because we have to check for all the element in the array
+//time complexity O(n)   It is the best case because we have to check for all the element in the array
