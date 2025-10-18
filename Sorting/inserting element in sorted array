@@ -1,0 +1,64 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Array{
+    public:
+    int size;
+    int *arr;
+    int length;
+
+    Array(int input_array[],int n,int s){
+        size = s;
+        arr = new int[size];
+        length = n;
+        for(int i=0;i<n;i++){
+            arr[i] = input_array[i];
+        }
+    }
+    void insert(int x){
+        if(length > size){
+            cout<<"insertion not possible" <<endl;
+            return;
+        }
+        int i=length-1;
+        while(i>=0 && arr[i]>x){          // shifting the greater value from the x to left side
+            arr[i+1] = arr[i];
+            i--;
+        }
+        arr[i+1] = x;     
+        length++;
+    }
+    
+    void printarr(){
+        for(int i=0;i<length;i++){
+            cout<< arr[i] <<" ";
+        }
+        cout<<endl;
+    }
+    ~Array(){
+        delete[] arr;
+    }
+    
+};
+
+int main(){
+    int array[] = {2,3,14,15,20,24};
+    int length = sizeof(array)/sizeof(array[0]);
+    int x=17;
+    int n =10;
+
+    Array a(array,length,n);
+    cout<< "Array befor insertion" <<endl;
+    a.printarr();
+
+    a.insert(x);
+    cout<< "Array after insertion" <<endl;
+    a.printarr();
+    return 0;
+}
+
+Complexity Analysis:
+Time: O(n)
+for best case O(1): x is greater than each element of the array an need to be inserted at the end
+for worst case O(n) : x less than all element and at the start insertion is required
+Space: O(1) only x is used extra
+This is the optimized method because inserting an element require shifting on the element so for worst case n elements are shifted
