@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+class Array{
+    public:
+    int size;
+    int *arr;
+    int length;
+
+    Array(int input_array[],int n,int s){
+        size = s;
+        arr = new int[size];
+        length = n;
+        for(int i=0;i<n;i++){
+            arr[i] = input_array[i];
+        }
+    }
+    void rearrange(){
+        int i=0;
+        int j=length-1;
+        while(i<j){
+            while(arr[i]<0) i++;                //negative value in the start
+            while(arr[j]>0) j--;                //positive at the end
+            if(i<j){                            
+                int temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+    void display(){
+        for(int i=0;i<length;i++){
+            cout<< arr[i] <<" ";
+        }
+        cout<<endl;
+    }
+    ~Array(){
+        delete[] arr;
+    }
+};
+
+int main(){
+    int array[] = {2,-3,14,-15,20,-24,12};
+    int length = sizeof(array)/sizeof(array[0]);
+    int x=17;
+    int n =10;
+    Array a(array,length,n);
+
+    cout << "Array before arranging" <<endl;
+    a.display();
+
+    a.rearrange();
+    cout << "Array after arranging" <<endl;
+    a.display();
+    return 0;
+}
+//Time complexity : O(n)  comparing all the elements of the array
